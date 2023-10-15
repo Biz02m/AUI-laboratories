@@ -36,7 +36,8 @@ public class Profession {
     public String toString() {
         return "Profession{" +
                 "name='" + name + '\'' +
-                ", baseArmor=" + baseArmor + '}';
+                ", baseArmor=" + baseArmor + ", " +
+                characterList + '}';
     }
 
     @Override
@@ -52,25 +53,37 @@ public class Profession {
         return Objects.hash(name, baseArmor, characterList);
     }
 
-    private Profession(ProfessionBuilder builder){
-        this.name = builder.name;
-        this.baseArmor = builder.baseArmor;
-        this.characterList = builder.characterList;
+    public Profession(String name, int baseArmor, List<Character> characterList){
+        this.name = name;
+        this.baseArmor = baseArmor;
+        this.characterList = characterList;
     }
 
-    public static class ProfessionBuilder{
+    public static class Builder{
         private String name;
         private int baseArmor;
         private List<Character> characterList;
 
-        public ProfessionBuilder(String name, int baseArmor, List<Character> characterList){
+        public Builder(){
+        }
+
+        public Builder name(String name){
             this.name = name;
+            return this;
+        }
+
+        public Builder baseArmor(int baseArmor){
             this.baseArmor = baseArmor;
+            return this;
+        }
+
+        public Builder characterList(List<Character> characterList){
             this.characterList = characterList;
+            return this;
         }
 
         public Profession build(){
-            return new Profession(this);
+            return new Profession(name, baseArmor, characterList);
         }
     }
 }

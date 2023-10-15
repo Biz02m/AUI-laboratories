@@ -41,7 +41,7 @@ public class Character {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, level, profession);
+        return Objects.hash(name, level);
     }
 
     @Override
@@ -49,25 +49,37 @@ public class Character {
         return "Character{name=" + this.name + ",  level=" + level + ", profession=" + profession.getName() + "}";
     }
 
-    public Character(CharacterBuilder builder){
-        this.name = builder.name;
-        this.level = builder.level;
-        this.profession = builder.profession;
+    public Character(String name, int level, Profession profession){
+        this.name = name;
+        this.level = level;
+        this.profession = profession;
     }
 
-    public static class CharacterBuilder{
+    public static class Builder{
         private String name;
         private int level;
         private Profession profession;
 
-        public CharacterBuilder(String name, int level, Profession profession){
+        public Builder(){
+        }
+
+        public Builder name(String name){
             this.name = name;
+            return this;
+        }
+
+        public Builder level(int level){
             this.level = level;
+            return this;
+        }
+
+        public Builder Profession(Profession profession){
             this.profession = profession;
+            return this;
         }
 
         public Character build(){
-            return new Character(this);
+            return new Character(name, level, profession);
         }
     }
 }
