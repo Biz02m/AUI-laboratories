@@ -11,16 +11,18 @@ public class main {
         ArrayList<Profession> Profesions = new ArrayList<>();
         AddItems(Profesions);
 
-        /*Profesions.forEach(profession -> {
-            System.out.println("Profession: " + profession.getName());
-            System.out.println("Base Armour: " + profession.getBaseArmor());
-            profession.getCharacterList().forEach(System.out::println);
-        });*/
 
-        Stream<Profession> stream = Profesions.stream();
-        Set<Profession> collected = stream.collect(Collectors.toSet());
-        stream = collected.stream();
-        stream.forEach(profession -> {
+        // Używamy strumienia do zebrania wszystkich postaci z różnych profesji do zbioru.
+        Set<Character> allCharacters = Profesions.stream()
+                .flatMap(profession -> profession.getCharacterList().stream())
+                .collect(Collectors.toSet());
+
+        // Wydrukujemy wszystkie postacie z kolekcji.
+        allCharacters.forEach(System.out::println);
+    }
+
+    public static void ex1(ArrayList<Profession> Profesions){
+        Profesions.forEach(profession -> {
             System.out.println("Profession: " + profession.getName());
             System.out.println("Base Armour: " + profession.getBaseArmor());
             profession.getCharacterList().forEach(System.out::println);
