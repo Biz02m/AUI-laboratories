@@ -1,6 +1,6 @@
-package th3.lab2.services;
+package th3.lab2.model.TypeOfBeer.Service.API;
 
-import th3.lab2.model.TypeOfBeer;
+import th3.lab2.model.TypeOfBeer.Entity.TypeOfBeer;
 
 import java.util.List;
 import java.util.Optional;

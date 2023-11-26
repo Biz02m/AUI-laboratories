@@ -3,10 +3,10 @@ package th3.lab2.initializer;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import th3.lab2.model.Beer;
-import th3.lab2.model.TypeOfBeer;
-import th3.lab2.services.BeerService;
-import th3.lab2.services.TypeOfBeerService;
+import th3.lab2.model.Beer.Entity.Beer;
+import th3.lab2.model.TypeOfBeer.Entity.TypeOfBeer;
+import th3.lab2.model.Beer.Service.API.BeerService;
+import th3.lab2.model.TypeOfBeer.Service.API.TypeOfBeerService;
 
 import java.util.UUID;
 
@@ -26,17 +26,17 @@ public class InitializeData implements InitializingBean {
         TypeOfBeer Lager = TypeOfBeer.builder()
                 .id(UUID.randomUUID())
                 .typeOfBeerName("Lager")
-                .YearOfInvention(1842)
+                .yearOfInvention(1842)
                 .build();
         TypeOfBeer Stout = TypeOfBeer.builder()
                 .id(UUID.randomUUID())
                 .typeOfBeerName("Stout")
-                .YearOfInvention(1759)
+                .yearOfInvention(1759)
                 .build();
         TypeOfBeer Ipa = TypeOfBeer.builder()
                 .id(UUID.randomUUID())
                 .typeOfBeerName("Ipa")
-                .YearOfInvention(1700)
+                .yearOfInvention(1700)
                 .build();
         typeOfBeerService.create(Lager);
         typeOfBeerService.create(Stout);

@@ -1,9 +1,9 @@
-package th3.lab2.repositories;
+package th3.lab2.model.Beer.Repository.API;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import th3.lab2.model.Beer;
-import th3.lab2.model.TypeOfBeer;
+import th3.lab2.model.Beer.Entity.Beer;
+import th3.lab2.model.TypeOfBeer.Entity.TypeOfBeer;
 
 import java.util.List;
 import java.util.Optional;

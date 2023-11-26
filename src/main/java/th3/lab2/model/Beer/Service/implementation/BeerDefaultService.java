@@ -1,10 +1,11 @@
-package th3.lab2.services;
+package th3.lab2.model.Beer.Service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import th3.lab2.model.Beer;
-import th3.lab2.repositories.BeerRepository;
-import th3.lab2.repositories.TypeOfBeerRepository;
+import th3.lab2.model.Beer.Entity.Beer;
+import th3.lab2.model.Beer.Repository.API.BeerRepository;
+import th3.lab2.model.Beer.Service.API.BeerService;
+import th3.lab2.model.TypeOfBeer.Repository.API.TypeOfBeerRepository;
 
 import java.util.List;
 import java.util.Optional;

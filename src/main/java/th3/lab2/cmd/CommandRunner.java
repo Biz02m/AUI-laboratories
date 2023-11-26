@@ -3,12 +3,11 @@ package th3.lab2.cmd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import th3.lab2.model.Beer;
-import th3.lab2.model.TypeOfBeer;
-import th3.lab2.services.BeerService;
-import th3.lab2.services.TypeOfBeerService;
+import th3.lab2.model.Beer.Entity.Beer;
+import th3.lab2.model.TypeOfBeer.Entity.TypeOfBeer;
+import th3.lab2.model.Beer.Service.API.BeerService;
+import th3.lab2.model.TypeOfBeer.Service.API.TypeOfBeerService;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;

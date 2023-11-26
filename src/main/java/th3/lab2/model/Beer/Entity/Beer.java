@@ -1,10 +1,10 @@
-package th3.lab2.model;
+package th3.lab2.model.Beer.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import th3.lab2.model.TypeOfBeer.Entity.TypeOfBeer;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -25,9 +25,9 @@ public class Beer implements Serializable {
     @EqualsAndHashCode.Exclude
     TypeOfBeer typeOfBeer;
 
-    public BeerDto toDto(){
-        return BeerDto.builder().name(this.name).percentage(this.percentage).TypeOfBeer(this.getTypeOfBeer().getTypeOfBeerName()).build();
-    }
+    /*public GetBeerResponse toDto(){
+        return GetBeerResponse.builder().name(this.name).percentage(this.percentage).TypeOfBeer(this.getTypeOfBeer().getTypeOfBeerName()).build();
+    }*/
 
 
     @Override
