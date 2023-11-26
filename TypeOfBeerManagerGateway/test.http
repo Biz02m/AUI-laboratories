@@ -1,0 +1,95 @@
+### get all beers
+GET http://localhost:8084/api/beers
+### get beer with id
+GET http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f0a12
+### get beer not existing
+GET http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f0aaa
+
+
+### get all beers of specified typeOfBeer
+### to nie dziala
+GET http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a3/beers
+### get all beers of non existent typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/0dc7e2c6-69e0-454c-bfb4-6ec6b0f39522/beers
+### get singular beer of specified typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a3/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f0a12
+### get singular beer of non existent typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a1/beers/d19d69bb-9f49-4a84-9c17-8697ca445a4d
+### get non existent beer of specified typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/f79d610b-b14c-4c9c-a229-70fb3fd69234/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5
+
+### get all typeOfBeers
+GET http://localhost:8084/api/typeOfBeers
+### get specific typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/2a741325-504d-406f-8b8f-87e5bdc1fd78
+### get non existent typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a1
+
+### create new beer
+PUT http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1
+Content-Type: application/json
+
+{
+  "name":"zywiecka",
+  "percentage":9,
+  "typeOfBeer":"0dc7e2c6-69e0-454c-bfb4-6ec6b0f395ec"
+}
+
+### create new beer in non existent typeOfBeer
+PUT http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f00b3
+Content-Type: application/json
+
+{
+  "name":"zywiecka ipunia",
+  "percentage":100,
+  "typeOfBeer":"f79d610b-b14c-4c9c-a229-70fb3fd69444"
+}
+
+### create new typeOfBeer
+PUT http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5
+Content-Type: application/json
+
+{
+  "typeOfBeerName":"yeast",
+  "yearOfInvention": 1929
+}
+
+### get all beers of empty typeOfBeer
+GET http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5/beers
+
+### update beer
+PATCH http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1
+Content-Type: application/json
+
+{
+  "name": "zywiec2",
+  "percentage": 18
+}
+
+### update non existent beer
+PATCH http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f0012
+Content-Type: application/json
+
+{
+  "name": "zywiec4",
+  "percentage": 213
+}
+
+### update typeOfBeer
+PATCH http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5
+Content-Type: application/json
+
+{
+  "typeOfBeerName":"yeeest",
+  "yearOfInvention": 1930
+}
+
+
+### delete beer
+DELETE http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f00b1
+### delete non existent beer
+DELETE http://localhost:8084/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a1
+### delete typeOfBeer
+DELETE http://localhost:8084/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a3
+### delete non existent typeOfBeer
+DELETE http://localhost:8084/api/typeOfBeers/f79d610b-b14c-4c9c-a229-70fb3fd69222
