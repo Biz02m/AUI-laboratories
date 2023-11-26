@@ -1,6 +1,6 @@
-import model.Character;
-import model.CharacterDto;
-import model.Profession;
+import model.Beer;
+import model.BeerDto;
+import model.TypeOfBeer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,95 +8,100 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class main {
     public static void main(String[] args) {
 
-        List<Profession> ListOfProfessions = new ArrayList<>();
+        List<TypeOfBeer> TypeBeerList = new ArrayList<>();
+        addElements(TypeBeerList);
 
         //ex2
-        System.out.println("Test for excercise 2");
-        addElements(ListOfProfessions);
-        ListOfProfessions.forEach(profession -> {
-            System.out.println("Profession: " + profession.getName());
-            System.out.println("Base armour" + profession.getBaseArmor());
-            profession.getCharacterList().forEach(character -> {
-                System.out.println("- name: " + character.getName());
-                System.out.println("- level: " + character.getLevel());
+        System.out.println("Test for exercise 2");
+        TypeBeerList.forEach(typeOfBeer -> {
+            System.out.println("TypeOfBeer: " + typeOfBeer.getName());
+            System.out.println("Year of invention " + typeOfBeer.getYearOfInvention());
+            typeOfBeer.getBeerList().forEach(beer -> {
+                System.out.println("- name: " + beer.getName());
+                System.out.println("- percentage: " + beer.getPercentage());
             });
         });
 
         //ex3
-        System.out.println("Test for excercise 3");
-        Set<Character> elements = ListOfProfessions.stream()
-                .flatMap(profession -> profession.getCharacterList().stream())
+        System.out.println("\nTest for exercise 3");
+        Set<Beer> elements = TypeBeerList
+                .stream()
+                .flatMap(beer -> beer.getBeerList().stream())
                 .collect(Collectors.toSet());
 
-        System.out.println("All elements from ListOfProfessions regardless of professions");
-        elements.stream()
-                .forEach(System.out::println);
+        System.out.println("All elements from TypeBeerList regardless of type of beer");
+        Stream<Beer> elementStream = elements.stream();
+        elementStream.forEach(System.out::println);
 
 
         //ex4
-        System.out.println("Test for excercise 4");
-        System.out.println("All elements whose level is above 40 sorted alphabetically");
+        System.out.println("\nTest for exercise 4");
+        System.out.println("Only elements whose percentage is above 4 and sorted by percentage");
         elements.stream()
-                .filter(character -> character.getLevel() > 40)
-                .sorted(Comparator.comparing(Character::getName))
+                .filter(beer -> beer.getPercentage() > 2)
+                .sorted(Comparator.comparingInt(Beer::getPercentage))
                 .forEach(System.out::println);
 
+
         //ex5
-        System.out.println("Test for excercise 5");
-        System.out.println("\n" + "Zadanie 5");
-        List<CharacterDto> dtoList = elements.stream()
-                .map(character -> new CharacterDto(character.getName(), character.getLevel(), character.getProfession().getName()))
+        System.out.println("\nTest for exercise 5");
+        List<BeerDto> beerDtoList = elements.stream()
+                .map(beer -> new BeerDto(beer.getName(), beer.getPercentage(), beer.getTypeOfBeer().getName()))
                 .sorted()
                 .collect(Collectors.toList());
-        dtoList.forEach(System.out::println);
+
+        beerDtoList
+                .forEach(System.out::println);
+
 
         //ex6
-        System.out.println("Test for excercise 6");
+        System.out.println("\nTest for exercise 6");
         //serialization
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("professions.dat"))) {
-            oos.writeObject(ListOfProfessions);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("typeOfBeers.dat"))) {
+            oos.writeObject(TypeBeerList);
         } catch (IOException e) {
             e.printStackTrace();
         }
         //reading from binary file
-        List<Profession> readProfessions = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("professions.dat"))) {
-            readProfessions = (List<Profession>) ois.readObject();
+        List<TypeOfBeer> readBeers = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("typeOfBeers.dat"))) {
+            readBeers = (List<TypeOfBeer>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         //reading from file
-        readProfessions.forEach(profession -> {
-            System.out.println(profession);
-            profession.getCharacterList().forEach(character -> {
-                System.out.println("\t" + character);
+        readBeers.forEach(typeOfBeer -> {
+            System.out.println(typeOfBeer);
+            typeOfBeer.getBeerList().forEach(beer -> {
+                System.out.println("\t" + beer);
             });
         });
 
     }
 
-    public static void addElements(List<Profession> ListOfProfessions){
-        Profession Witcher = new Profession.Builder().name("Witcher").baseArmor(50).characterList(new ArrayList<>()).build();
-        Witcher.getCharacterList().add(new Character.Builder().name("Geralt").level(20).Profession(Witcher).build());
-        Witcher.getCharacterList().add(new Character.Builder().name("Eskel").level(39).Profession(Witcher).build());
-        Witcher.getCharacterList().add(new Character.Builder().name("Lambert").level(23).Profession(Witcher).build());
-        Witcher.getCharacterList().add(new Character.Builder().name("Vesemir").level(72).Profession(Witcher).build());
-        ListOfProfessions.add(Witcher);
+    public static void addElements(List<TypeOfBeer> TypeBeerList){
+        TypeOfBeer Witcher = TypeOfBeer.builder().name("Lager").YearOfInvention(1842).beerList(new ArrayList<>()).build();
+        Witcher.getBeerList().add(Beer.builder().name("Pilsner Urquell").percentage(4).typeOfBeer(Witcher).build());
+        Witcher.getBeerList().add(Beer.builder().name("Stella Artois").percentage(5).typeOfBeer(Witcher).build());
+        Witcher.getBeerList().add(Beer.builder().name("Heineken").percentage(5).typeOfBeer(Witcher).build());
+        Witcher.getBeerList().add(Beer.builder().name("Budweiser").percentage(3).typeOfBeer(Witcher).build());
+        TypeBeerList.add(Witcher);
 
-        Profession Mage = new Profession.Builder().name("Mage").baseArmor(20).characterList(new ArrayList<>()).build();
-        Mage.getCharacterList().add(new Character.Builder().name("Gaunter o dimm").level(999).Profession(Mage).build());
-        Mage.getCharacterList().add(new Character.Builder().name("Vilgefortz").level(5).Profession(Mage).build());
-        Mage.getCharacterList().add(new Character.Builder().name("Stregobor").level(51).Profession(Mage).build());
-        ListOfProfessions.add(Mage);
+        TypeOfBeer Mage = TypeOfBeer.builder().name("Ipa").YearOfInvention(1700).beerList(new ArrayList<>()).build();
+        Mage.getBeerList().add(Beer.builder().name("Sierra Nevada Pale Ale").percentage(6).typeOfBeer(Mage).build());
+        Mage.getBeerList().add(Beer.builder().name("Zywiec").percentage(4).typeOfBeer(Mage).build());
+        Mage.getBeerList().add(Beer.builder().name("Ksiazeca").percentage(5).typeOfBeer(Mage).build());
+        TypeBeerList.add(Mage);
 
-        Profession Sorceress = new Profession.Builder().name("Sorceress").baseArmor(10).characterList(new ArrayList<>()).build();
-        Sorceress.getCharacterList().add(new Character.Builder().name("Yennefer of Vengerberg").level(43).Profession(Sorceress).build());
-        Sorceress.getCharacterList().add(new Character.Builder().name("Triss Merigold").level(64).Profession(Sorceress).build());
-        Sorceress.getCharacterList().add(new Character.Builder().name("Filippa Eilhart").level(87).Profession(Sorceress).build());
-        ListOfProfessions.add(Sorceress);
+        TypeOfBeer Sorceress = TypeOfBeer.builder().name("Stout").YearOfInvention(1759).beerList(new ArrayList<>()).build();
+        Sorceress.getBeerList().add(Beer.builder().name("Guinness Draught").percentage(4).typeOfBeer(Sorceress).build());
+        Sorceress.getBeerList().add(Beer.builder().name("Founders Breakfast Stout").percentage(8).typeOfBeer(Sorceress).build());
+        Sorceress.getBeerList().add(Beer.builder().name("Oskar Blues Ten FIDY").percentage(10).typeOfBeer(Sorceress).build());
+        TypeBeerList.add(Sorceress);
     }
 }
