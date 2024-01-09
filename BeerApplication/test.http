@@ -1,11 +1,11 @@
 ### get all beers
 GET http://localhost:8081/api/beers
 ### get beer with id
-GET http://localhost:8081/api/beers/bc192afb-8026-4ddb-8335-8a5e98f1aa77
+GET http://localhost:8081/api/beers/c4804e0f-769e-4ab9-9ebe-0578fb4f0a12
 ### get beer not existing
 GET http://localhost:8081/api/beers/5b375d8d-0512-4f92-a755-ca5b5dda8223
 ### get all beers of specified typeOfBeer
-GET http://localhost:8081/api/typeOfBeers/f79d610b-b14c-4c9c-a229-70fb3fd69234/beers
+GET http://localhost:8081/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a1/beers
 ### get all beers of non existent typeOfBeer
 GET http://localhost:8081/api/typeOfBeers/eb641f55-a18e-45b1-af0f-a3224c05a0aa/beers
 

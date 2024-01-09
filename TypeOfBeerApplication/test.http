@@ -1,11 +1,11 @@
 ### get all typeOfBeers
 GET http://localhost:8082/api/typeOfBeers
 ### get specific typeOfBeer
-GET http://localhost:8082/api/typeOfBeers/aa302a21-1289-431e-afc2-9bdc8251bd50
+GET http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a2
 ### get non existent typeOfBeer
-GET http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a1
+GET http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f0000
 ### create new typeOfBeer
-PUT http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5
+PUT http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f0000
 Content-Type: application/json
 
 {
@@ -13,7 +13,7 @@ Content-Type: application/json
   "yearOfInvention": 1929
 }
 ### update typeOfBeer
-PATCH http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5
+PATCH http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f0000
 Content-Type: application/json
 
 {
@@ -22,6 +22,6 @@ Content-Type: application/json
 }
 
 ### delete typeOfBeer
-DELETE http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f00a5
+DELETE http://localhost:8082/api/typeOfBeers/c4804e0f-769e-4ab9-9ebe-0578fb4f0000
 ### delete non existent typeOfBeer
 DELETE http://localhost:8082/api/typeOfBeers/f79d610b-b14c-4c9c-a229-70fb3fd69222

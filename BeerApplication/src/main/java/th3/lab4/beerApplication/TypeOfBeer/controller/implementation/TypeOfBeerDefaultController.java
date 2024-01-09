@@ -24,9 +24,15 @@ public class TypeOfBeerDefaultController implements TypeOfBeerController {
         this.requestToTypeOfBeer = requestToTypeOfBeer;
     }
 
+
+    @Override
+    public void postTypeOfBeer(PostTypeOfBeerRequest request) {
+        typeOfBeerService.create(requestToTypeOfBeer.apply(request));
+    }
+
     @Override
     public void putTypeOfBeer(PostTypeOfBeerRequest request) {
-        typeOfBeerService.create(requestToTypeOfBeer.apply(request));
+        typeOfBeerService.update(requestToTypeOfBeer.apply(request));
     }
 
     @Override

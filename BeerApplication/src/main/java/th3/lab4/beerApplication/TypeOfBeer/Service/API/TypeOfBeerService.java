@@ -7,6 +7,7 @@ import java.util.UUID;
 
 public interface TypeOfBeerService {
     void create(TypeOfBeer typeOfBeer);
+    void update(TypeOfBeer typeOfBeer);
     void delete(UUID id);
     Optional<TypeOfBeer> find(UUID id);
 }

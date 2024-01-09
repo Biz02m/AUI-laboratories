@@ -10,6 +10,13 @@ public interface TypeOfBeerController {
 
     @PostMapping("api/typeOfBeers/")
     @ResponseStatus(HttpStatus.CREATED)
+    void postTypeOfBeer(
+            @RequestBody
+            PostTypeOfBeerRequest request
+    );
+
+    @PutMapping("api/typeOfBeers/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     void putTypeOfBeer(
             @RequestBody
             PostTypeOfBeerRequest request

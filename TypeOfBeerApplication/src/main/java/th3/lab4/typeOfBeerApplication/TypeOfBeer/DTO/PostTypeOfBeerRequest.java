@@ -10,4 +10,5 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostTypeOfBeerRequest {
     private UUID id;
+    private String name;
 }

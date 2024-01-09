@@ -25,12 +25,15 @@ public class InitializeData implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         TypeOfBeer Lager = TypeOfBeer.builder()
                 .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a1"))
+                .typeOfBeerName("Lager")
                 .build();
         TypeOfBeer Stout = TypeOfBeer.builder()
                 .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a2"))
+                .typeOfBeerName("Stout")
                 .build();
         TypeOfBeer Ipa = TypeOfBeer.builder()
                 .id(UUID.fromString("c4804e0f-769e-4ab9-9ebe-0578fb4f00a3"))
+                .typeOfBeerName("Ipa")
                 .build();
         typeOfBeerService.create(Lager);
         typeOfBeerService.create(Stout);

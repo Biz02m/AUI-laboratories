@@ -12,6 +12,7 @@ public class RequestToTypeOfBeerFunction implements Function<PostTypeOfBeerReque
     public TypeOfBeer apply(PostTypeOfBeerRequest postTypeOfBeerRequest) {
         return TypeOfBeer.builder()
                 .id(postTypeOfBeerRequest.getId())
+                .typeOfBeerName(postTypeOfBeerRequest.getName())
                 .build();
     }
 }

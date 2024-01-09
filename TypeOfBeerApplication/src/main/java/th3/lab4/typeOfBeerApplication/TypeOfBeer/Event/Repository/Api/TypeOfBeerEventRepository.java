@@ -8,4 +8,6 @@ public interface TypeOfBeerEventRepository {
     void delete(UUID id);
 
     void save(TypeOfBeer typeOfBeer);
+
+    void update(TypeOfBeer typeOfBeer);
 }

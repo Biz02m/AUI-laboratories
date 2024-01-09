@@ -17,6 +17,8 @@ import java.util.UUID;
 public class TypeOfBeer implements Serializable {
     @Id
     private UUID id;
+    @Column(name = "typeOfBeerName")
+    private String typeOfBeerName;
 
     @OneToMany(mappedBy = "typeOfBeer",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     @ToString.Exclude

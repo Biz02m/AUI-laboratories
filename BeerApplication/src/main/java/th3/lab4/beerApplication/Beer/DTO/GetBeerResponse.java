@@ -23,6 +23,7 @@ public class GetBeerResponse {
          * Unique id identifying type of beer.
          */
         private UUID id;
+        private String typeOfBeerName;
 
     }
 

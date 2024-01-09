@@ -26,6 +26,7 @@ public class TypeOfBeerDefaultService implements TypeOfBeerService {
     @Override
     public void update(TypeOfBeer typeOfBeer) {
         repository.save(typeOfBeer);
+        eventRepository.update(typeOfBeer);
     }
 
     @Override

@@ -28,4 +28,9 @@ public class TypeOfBeerEventRestRepository implements TypeOfBeerEventRepository 
     public void save(TypeOfBeer typeOfBeer) {
         restTemplate.postForLocation("/api/typeOfBeers/", typeOfBeerToRequest.apply(typeOfBeer));
     }
+
+    @Override
+    public void update(TypeOfBeer typeOfBeer) {
+        restTemplate.put("/api/typeOfBeers/"+typeOfBeer.getId(), typeOfBeerToRequest.apply(typeOfBeer));
+    }
 }

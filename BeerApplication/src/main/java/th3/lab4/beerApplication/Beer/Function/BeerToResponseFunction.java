@@ -17,6 +17,7 @@ public class BeerToResponseFunction implements Function<Beer, GetBeerResponse> {
                 .percentage(entity.getPercentage())
                 .typeOfBeer(GetBeerResponse.TypeOfBeer.builder()
                         .id(entity.getTypeOfBeer().getId())
+                        .typeOfBeerName(entity.getTypeOfBeer().getTypeOfBeerName())
                         .build())
                 .build();
     }

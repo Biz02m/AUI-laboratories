@@ -25,6 +25,9 @@ public class TypeOfBeerDefaultService implements TypeOfBeerService {
     }
 
     @Override
+    public void update(TypeOfBeer typeOfBeer) { repository.save(typeOfBeer); }
+
+    @Override
     public void delete(UUID id) {
         repository.findById(id).ifPresent(repository::delete);
     }
