@@ -1,0 +1,47 @@
+<article *ngIf="beer">
+  <header><h2>Edit beer</h2></header>
+
+  <form class="container"  #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name:</label>
+          <input id="name" name="name" [(ngModel)]="beer.name"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="percentage">Percentage:</label>
+          <input id="percentage" name="percentage" [(ngModel)]="beer.percentage"/>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <fieldset *ngIf="typeOfBeers">
+          <legend>TypeOfBeer:</legend>
+          <div *ngFor="let typeOfBeer of typeOfBeers.typeOfBeers">
+            <label>
+              <input type="radio" name="typeOfBeer" [(ngModel)]="beer.typeOfBeer" [value]="typeOfBeer.id"/>
+              {{typeOfBeer.typeOfBeerName}}
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Update</button>
+      </div>
+      <div class="col-2 p-2">
+        <button type="button" (click)="form.resetForm(original)">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>

@@ -63,7 +63,8 @@ Content-Type: application/json
 
 {
   "name": "zywiec2",
-  "percentage": 18
+  "percentage": 18,
+  "typeOfBeer": "Ipa"
 }
 
 ### update non existent beer

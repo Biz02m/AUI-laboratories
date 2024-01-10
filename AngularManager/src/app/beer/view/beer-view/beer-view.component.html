@@ -1,0 +1,30 @@
+<article *ngIf="beer">
+  <header><h2>{{beer.name}}</h2></header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="row mb-2">
+          <div class="col-6">
+            Percentage:
+            <span>{{beer.percentage}}</span>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6">
+            Id:
+            <span>{{beer.id}}</span>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6">
+            typeOfBeer:
+            <span>{{beer.typeOfBeer.typeOfBeerName}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,46 @@
+<article *ngIf="typeOfBeer">
+  <header><h2>{{typeOfBeer.typeOfBeerName}}</h2></header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="row mb-2">
+          <div class="col-6">
+            Profit:
+            <span>{{typeOfBeer.yearOfInvention}}</span>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6">
+            Id:
+            <span>{{typeOfBeer.id}}</span>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div class="col-6">
+            Beers:
+            <table *ngIf="beers">
+              <tbody>
+              <tr *ngFor="let beer of beers.beers">
+                <td> - {{beer.name}}</td>
+                <td>
+                  <a [routerLink]="['/typeOfBeers/'+beer.typeOfBeer+'/beers', beer.id]">View</a>
+                </td>
+                <td>
+                  <a [routerLink]="['/typeOfBeers/'+beer.typeOfBeer+'/beers', beer.id, 'edit']">Edit</a>
+                </td>
+                <td>
+                  <button (click)="onDelete(beer)">Delete</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <a [routerLink]="['/typeOfBeers',typeOfBeer.id,'beers','create']">Create new beer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
