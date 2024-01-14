@@ -17,9 +17,9 @@ public class Lab2Application {
 	@Bean
 	public RouteLocator routeLocator(
 			RouteLocatorBuilder builder,
-			@Value("${typeOfBeerManager.beer.url}") String beerUrl,
-			@Value("${typeOfBeerManager.typeOfBeer.url}") String typeOfBeerUrl,
-			@Value("${typeOfBeerManager.gateway.host}") String host
+			@Value("${meneger.beer.url}") String beerUrl,
+			@Value("${meneger.typeOfBeer.url}") String typeOfBeerUrl,
+			@Value("${meneger.gateway.host}") String host
 	){
 		return builder.routes()
 				.route("typeOfBeers",route->route

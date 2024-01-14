@@ -15,7 +15,7 @@ public class TypeOfBeerApplication {
 	}
 
 	@Bean
-	public RestTemplate restTemplate(@Value("${typeOfBeerManager.beer.url}") String baseUrl)
+	public RestTemplate restTemplate(@Value("${meneger.beer.url}") String baseUrl)
 	{
 		return new RestTemplateBuilder().rootUri(baseUrl).build();
 	}

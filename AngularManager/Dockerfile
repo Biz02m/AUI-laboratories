@@ -16,5 +16,5 @@ ENV API_URL http://localhost:8084/api
 
 EXPOSE 80
 
-COPY --from=build /app/dist/meneger-ng/browser /usr/share/nginx/html
+COPY --from=build /app/dist/angular-manager/browser /usr/share/nginx/html
 COPY docker/etc/nginx/templates/ /etc/nginx/templates/
