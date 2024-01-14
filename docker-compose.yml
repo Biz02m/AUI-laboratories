@@ -1,0 +1,69 @@
+
+services:
+  beer-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: "beer_db"
+      POSTGRES_USER: "beer_user"
+      POSTGRES_PASSWORD: "beer_password"
+    volumes:
+      - beer-db-data:/var/lib/postgresql/data
+
+  typeOfBeer-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: "typeOfBeer_db"
+      POSTGRES_USER: "typeOfBeer_user"
+      POSTGRES_PASSWORD: "typeOfBeer_password"
+    volumes:
+      - typeOfBeer-db-data:/var/lib/postgresql/data
+
+  typeOfBeer-meneger-beer:
+    image: aui-beer-image
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://beer-db:5432/beer_db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "beer_user"
+      SPRING_DATASOURCE_PASSWORD: "beer_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+
+
+  typeOfBeer-meneger-typeOfBeer:
+    image: aui-typeofbeer-image
+    restart: always
+    depends_on: 
+      typeOfBeer-meneger-beer:
+        condition: service_started
+      typeOfBeer-db:
+        condition: service_started
+    environment:
+      MENEGER_BEER_URL: "http://typeOfBeer-meneger-beer:8080"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://typeOfBeer-db:5432/typeOfBeer_db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "typeOfBeer_user"
+      SPRING_DATASOURCE_PASSWORD: "typeOfBeer_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+
+  typeOfBeer-meneger-gateway:
+    image: aui-gateway-image
+    restart: always
+    environment:
+      MENEGER_BEER_URL: "http://typeOfBeer-meneger-beer:8080"
+      MENEGER_TYPEOFBEER_URL: "http://typeOfBeer-meneger-typeOfBeer:8080"
+      MENEGER_GATEWAY_HOST: "typeOfBeer-meneger-gateway:8080"
+
+  meneger-ng:
+    image: aui-image
+    restart: always
+    environment:
+      API_URL: http://typeOfBeer-meneger-gateway:8080/api
+    ports:
+      - "8087:80"
+
+
+volumes:
+  typeOfBeer-db-data:
+  beer-db-data:

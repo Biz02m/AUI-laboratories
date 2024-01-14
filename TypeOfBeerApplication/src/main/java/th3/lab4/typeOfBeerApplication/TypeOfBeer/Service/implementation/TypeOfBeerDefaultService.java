@@ -32,7 +32,12 @@ public class TypeOfBeerDefaultService implements TypeOfBeerService {
     @Override
     public void create(TypeOfBeer typeOfBeer) {
         repository.save(typeOfBeer);
-        eventRepository.save(typeOfBeer);
+        try {
+            eventRepository.save(typeOfBeer);
+        }catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
     @Override
